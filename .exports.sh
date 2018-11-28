@@ -21,6 +21,7 @@ export PATH=${NCDU_HOME}/bin:${HTOP_HOME}/bin:${PATH}
 
 export OPENMPI_HOME=${HOME}/bin/mpi/openmpi-4.0.0/build
 export OPENMPI_LIB64=${OPENMPI_HOME}/lib64
+export OPENMPI_LIB=${OPENMPI_HOME}/lib
 export OPENMPI_INCLUDE=${OPENMPI_HOME}/include
 export OPENMPI_BIN=${OPENMPI_HOME}/bin
 
