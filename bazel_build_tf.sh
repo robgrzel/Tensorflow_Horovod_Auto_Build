@@ -20,36 +20,48 @@ export TF_BUILD=tensorflow
 export TF_API_HOME=${TF_HOME}
 fi
 
+export TF_BUILD_HOME=${HOME}/bin/TF-build-gpu
+
 
 cd ${HOME}/bin
-echo "We will build TF in : ${HOME}/bin/TF-build-gpu/${TF_BUILD}..."
-mkdir -p ${HOME}/bin/TF-build-gpu/${TF_BUILD}
 
 echo "We will move built TF c/cpp API to : ${TF_API_HOME}..."
 mkdir -p ${TF_API_HOME}
 mkdir -p ${TF_API_HOME}/lib64
 mkdir -p ${TF_API_HOME}/include
 
-cd ${HOME}/bin/TF-build-gpu
-
-if ! cd tensorflow; then
-git clone https://github.com/tensorflow/tensorflow
-cd ${HOME}/bin/TF-build-gpu/tensorflow
-fi;
-
-if [ "$DO_PY_INTEL" ]
-then
-echo "Copy git clone of tensorflow to build dir: ${HOME}/bin/TF-build-gpu/${TF_BUILD}"
-cp -nR ${HOME}/bin/TF-build-gpu/tensorflow ${HOME}/bin/TF-build-gpu/${TF_BUILD}
-fi
 
 echo "Copy git clone of tensorflow c/cpp API to: ${TF_API_HOME}"
 if ! cd ${TF_API_HOME}; then
-cp -nR ${HOME}/bin/TF-build-gpu/tensorflow ${TF_API_HOME}
+    git clone https://github.com/tensorflow/tensorflow
+    if [ "$DO_PY_INTEL" ]; then
+        mv tensorflow ${TF_BUILD}
+    fi
+    cd ${TF_BUILD}
+    git checkout r1.12
 fi
 
-cd ${HOME}/bin/TF-build-gpu/${TF_BUILD}
+
+echo "We will build TF in : ${TF_BUILD_HOME}..."
+mkdir -p ${TF_BUILD_HOME}
+
+cd ${TF_BUILD_HOME}
+
+if ! cd tensorflow; then
+git clone https://github.com/tensorflow/tensorflow
+cd ${TF_BUILD_HOME}/${TF_BUILD}
+fi;
+
 git checkout r1.12
+if [ "$DO_PY_INTEL" ]; then
+    echo "Copy git clone of tensorflow to build dir: ${HOME}/bin/TF-build-gpu/${TF_BUILD}"
+    cp -nR ${TF_BUILD_HOME}/tensorflow ${TF_BUILD_HOME}/${TF_BUILD}
+fi
+
+
+
+
+
 
 
 
@@ -60,7 +72,7 @@ echo "Current dir is: ${PWD}..."
 
 
 
-cd ${HOME}/bin/TF-build-gpu/${TF_BUILD}/
+cd ${TF_BUILD_HOME}/${TF_BUILD}
 
 
 export TF_NEED_NGRAPH=0
@@ -154,11 +166,11 @@ bazel build \
     
 
 #pack tf package to wheel
-cd ${HOME}/bin/TF-build-gpu/${TF_BUILD}/bazel-bin/tensorflow/tools/pip_package/build_pip_package ../${TF_BUILD}_pkg
+cd ${TF_BUILD_HOME}/${TF_BUILD}/bazel-bin/tensorflow/tools/pip_package/build_pip_package ../${TF_BUILD}_pkg
 
 . activate ${PY_ENV}
 
-cd ${HOME}/bin/TF-build-gpu/${TF_BUILD}_pkg
+cd ${TF_BUILD_HOME}/${TF_BUILD}_pkg
 pip install ten*
 
 
@@ -166,5 +178,5 @@ pip install ten*
 cp -Rn tensorflow ${TF_API_HOME}/include/tensorflow
 cp -Rn third_party ${TF_API_HOME}/include/third_party
 cp -Rn tools ${TF_API_HOME}/include/tools
-cp -Rn ${HOME}/bin/TF*/${TF_BUILD}/bazel-bin/tensorflow/*.so ${TF_API_HOME}/lib64
+cp -Rn ${TF_BUILD_HOME}/${TF_BUILD}/bazel-bin/tensorflow/*.so ${TF_API_HOME}/lib64
 
