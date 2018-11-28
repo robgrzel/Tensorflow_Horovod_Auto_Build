@@ -14,30 +14,39 @@ set -e
 if [ "$DO_PY_INTEL" ]
 then
 export TF_BUILD=tensorflow_i
-export TF_BUILD_HOME=${TFI_HOME}
+export TF_API_HOME=${TFI_HOME}
 else
 export TF_BUILD=tensorflow
-export TF_BUILD_HOME=${TF_HOME}
+export TF_API_HOME=${TF_HOME}
 fi
 
-echo "We will build TF in : ${TF_HOME}..."
 
 cd ${HOME}/bin
-mkdir -p TF-build-gpu 
-cd TF-build-gpu
+echo "We will build TF in : ${HOME}/bin/TF-build-gpu/${TF_BUILD}..."
+mkdir -p ${HOME}/bin/TF-build-gpu/${TF_BUILD}
+
+echo "We will move built TF c/cpp API to : ${TF_API_HOME}..."
+mkdir -p ${HOME}/bin/${TF_BUILD}
+
+cd ${HOME}/bin/TF-build-gpu
 
 if ! cd tensorflow; then
 git clone https://github.com/tensorflow/tensorflow
-cd tensorflow
+cd ${HOME}/bin/TF-build-gpu/tensorflow
 fi;
 
 if [ "$DO_PY_INTEL" ]
 then
-echo "Copy git clone of tensorflow to : ${TF_HOME}..."
-cp -nR tensorflow ${TF_BUILD}
+echo "Copy git clone of tensorflow to build dir: ${HOME}/bin/TF-build-gpu/${TF_BUILD}"
+cp -nR ${HOME}/bin/TF-build-gpu/tensorflow ${TF_API_HOME}
 fi
 
-cd ${TF_BUILD}/
+echo "Copy git clone of tensorflow c/cpp API to: ${HOME}/bin/${TF_BUILD}"
+if ! cd ${TF_API_HOME}; then
+cp -nR ${HOME}/bin/TF-build-gpu/tensorflow ${TF_API_HOME}
+fi
+
+cd ${HOME}/bin/TF-build-gpu/${TF_BUILD}
 git checkout r1.12
 
 echo "Current dir is: ${PWD}..."
@@ -141,27 +150,23 @@ bazel build \
     
 
 #pack tf package to wheel
-cd ${HOME}/bin/TF*/${TF_BUILD}/bazel-bin/tensorflow/tools/pip_package/build_pip_package ../${TF_BUILD}_pkg
+cd ${HOME}/bin/TF-build-gpu/${TF_BUILD}/bazel-bin/tensorflow/tools/pip_package/build_pip_package ../${TF_BUILD}_pkg
 
 . activate ${PY_ENV}
 
-cd ${HOME}/bin/TF*/${TF_BUILD}_pkg
+cd ${HOME}/bin/TF-build-gpu/${TF_BUILD}_pkg
 pip install ten*
 
 
 
 #copy c/cpp api libs to 
-cd ${HOME}/bin
-if ! cd tensorflow; then
-git clone https://github.com/tensorflow/tensorflow
-cd tensorflow 
-fi
+
 
 git checkout r1.12
-mkdir -p ${TF_BUILD_HOME}/lib64
-mkdir -p ${TF_BUILD_HOME}/include
-cp -Rn tensorflow ${TF_BUILD_HOME}/include/tensorflow
-cp -Rn third_party ${TF_BUILD_HOME}/include/third_party
-cp -Rn tools ${TF_BUILD_HOME}/include/tools
-cp -Rn ${HOME}/bin/TF*/${TF_BUILD}/bazel-bin/tensorflow/*.so ${TF_BUILD_HOME}/lib64
+mkdir -p ${TF_API_HOME}/lib64
+mkdir -p ${TF_API_HOME}/include
+cp -Rn tensorflow ${TF_API_HOME}/include/tensorflow
+cp -Rn third_party ${TF_API_HOME}/include/third_party
+cp -Rn tools ${TF_API_HOME}/include/tools
+cp -Rn ${HOME}/bin/TF*/${TF_BUILD}/bazel-bin/tensorflow/*.so ${TF_API_HOME}/lib64
 
