@@ -23,7 +23,7 @@ cd mpi
 
 if ! cd mpi*4.0.0; then
     wget -nc https://download.open-mpi.org/release/open-mpi/v4.0/openmpi-4.0.0.tar.gz
-    tar -xkzf openmpi-4.0.0.tar.gz || true 2> /dev/null
+    tar -xkzf openmpi-4.0.0.tar.gz || true &> /dev/null
 
     . deactivate || true
     . ~/.bashrc
