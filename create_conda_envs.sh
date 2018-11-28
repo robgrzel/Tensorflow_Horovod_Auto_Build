@@ -57,8 +57,8 @@ fi
 
 . activate ${PY_ENV}
 
-pip install -y keras_preprocessing
-pip install -y keras_application
+pip install keras_preprocessing
+pip install keras_application
 
 ###################################################################################################
 ###################################################################################################
