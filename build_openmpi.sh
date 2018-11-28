@@ -25,6 +25,8 @@ if ! cd mpi*4.0.0; then
     wget -nc https://download.open-mpi.org/release/open-mpi/v4.0/openmpi-4.0.0.tar.gz
     tar -xkzf openmpi-4.0.0.tar.gz || true &> /dev/null
 
+    cd mpi*4.0.0
+
     . deactivate || true
     . ~/.bashrc
 
@@ -39,7 +41,6 @@ if ! cd mpi*4.0.0; then
         --enable-mpi-cxx-seek \
         CC=gcc CXX=g++
 
-     cd mpi*4.0.0
 fi
 
 make && make all install 
