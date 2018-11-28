@@ -42,17 +42,22 @@ cd ${HOME}/bin
 if ! cd nccl; then
 git clone https://github.com/NVIDIA/nccl
 cd nccl
-make -j src.build
 fi
 
+make -j src.build
+
+. deactivate || true
+. ~/.bashrc
 
 cd ${HOME}/bin
 if ! cd nccl-tests; then
 git clone https://github.com/NVIDIA/nccl-tests.git
 cd nccl-tests
+fi
+
+
 make
 ./build/all_reduce_perf -b 8 -e 256M -f 2 -g 1
-fi
 
 
 
