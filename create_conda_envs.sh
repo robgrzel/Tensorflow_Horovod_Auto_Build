@@ -26,7 +26,7 @@ if [ -n "$DO_INSTALL_MINICONDA3" ]
     else
         echo "Not existing, install miniconda3..."
 
-        wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
+        wget -nc https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
         mv Miniconda3-latest-Linux-x86_64.sh miniconda3.sh
         chmod 755 miniconda3.sh
         ./miniconda3.sh -b -p ${HOME}/bin/miniconda3
