@@ -57,6 +57,8 @@ fi
 
 . activate ${PY_ENV}
 
+echo "which python"
+
 pip install keras_preprocessing
 pip install keras_application
 
