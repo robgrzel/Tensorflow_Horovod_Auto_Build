@@ -28,8 +28,13 @@ fi
 echo "Copy .exports from ${PWD} to ${HOME}/bin"
 
 
-echo "source ~/bin/.exports.sh || true" >> ~/.bashrc
-cp .exports.sh ~/bin/.exports.sh
+if [ ! -z $(grep "source ${HOME}/bin/.exports.sh || true" "${HOME}/.bashrc") ];
+then
+echo "source ${HOME}/bin/.exports.sh || true" >> ~/.bashrc
+fi
+
+cp .exports.sh ${HOME}/bin/.exports.sh || true
+
 source ~/.bashrc
 
 
