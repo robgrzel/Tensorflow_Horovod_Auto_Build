@@ -2,14 +2,19 @@
 
 cd ${HOME}/bin
 
+. deactivate || true
+
 
 ###################################################################################################
 ###################################################################################################
 
 export TMP=${HOME}/tmp
 
-mkdir ${HOME}/bin >& /dev/null
+mkdir ${HOME}/bin || true
 
+export CONDA3_HOME=${HOME}/bin/miniconda3
+export CONDA3_BIN=${CONDA3_HOME}/bin
+export PATH=${CONDA3_BIN}:${PATH}
 
 export HTOP_HOME=${HOME}/bin/htop/build
 export NCDU_HOME=${HOME}/bin/ncdu/ncdu-1.13/build
@@ -173,3 +178,5 @@ if [ -d "$TF_HOME" ]; then
 export PATH=${TF_INCLUDE_TF}:${TF_INCLUDE_3PARTY}:${TF_INCLUDE_TOOLS}:${PATH}
 export LD_LIBRARY_PATH=${TF_LIB64}:${LD_LIBRARY_PATH}
 fi
+
+printf 'User %s finished %s script %s\n' "${USER}" "$0" "$BASH_SOURCE"

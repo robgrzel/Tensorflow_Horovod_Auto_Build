@@ -4,7 +4,7 @@ set -e
 cd
 
 
-. deactivate >& /dev/null
+. deactivate || true
 . ~/.bashrc
 
 export DO_PY_INTEL=0

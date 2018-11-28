@@ -4,7 +4,7 @@ set -x
 set -e
 cd
 
-. deactivate >& /dev/null
+. deactivate || true
 . ~/.bashrc
 
 

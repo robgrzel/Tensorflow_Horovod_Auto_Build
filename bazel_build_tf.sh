@@ -3,7 +3,7 @@ set -x
 set -e
 cd ${HOME}/bin
 
-. deactivate >& /dev/null
+. deactivate || true
 . ~/.bashrc
 
 
