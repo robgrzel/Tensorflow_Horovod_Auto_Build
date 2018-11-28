@@ -8,4 +8,5 @@ cd Tensorflow_Horovod_Auto_Build
 chmod 755 * && ./main.sh
 ```
 
-Then hope it works!
+Then keep fingers crossed and hope it works!
+Wish You good luck!
