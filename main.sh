@@ -2,7 +2,9 @@
 #set -x
 set -e
 
+mydir=${PWD}
 
+echo ${mydir}
 
 . deactivate || true
 . ~/.bashrc
@@ -37,8 +39,8 @@ source ~/.bashrc
 echo "Start building..."
 
 echo "Create conda envs..."
-
 ./create_conda_envs.sh
+
 echo "Build openmpi..."
 ./build_openmpi.sh
 

@@ -2,7 +2,6 @@
 
 set -x
 set -e
-cd
 
 . deactivate || true
 . ~/.bashrc
