@@ -57,7 +57,7 @@ cd ${HOME}/bin
 mkdir hwloc  || true
 cd hwloc 
 wget -nc https://download.open-mpi.org/release/hwloc/v2.0/hwloc-2.0.2.tar.gz
-tar -xvzf hwloc*2.0.2*
+tar -xvzf hwloc*2.0.2*tar.gz
 cd hwloc*2.0.2
 ./configure --prefix=${HWLOC_HOME} && make && make all install
 
@@ -71,7 +71,7 @@ cd ${HOME}/bin
 mkdir pmix  || true
 cd pmix 
 wget -nc https://github.com/pmix/pmix/releases/download/v3.0.2/pmix-3.0.2.tar.gz
-tar -xvzf pmix*3.0.2*
+tar -xvzf pmix*3.0.2*.tar.gz
 cd pmix*3.0.2*
 ./configure --prefix=${PMIX_HOME} --with-libevent=${LIBEVENT_HOME} && make && make all install
 
@@ -104,7 +104,7 @@ cd ${HOME}/bin
 mkdir llvm  || true
 cd llvm 
 wget -nc http://releases.llvm.org/7.0.0/clang+llvm-7.0.0-x86_64-linux-gnu-ubuntu-16.04.tar.xz
-tar -xvf clang*
+tar -xvf clang*tar.gz
 rm clang*tar.xz
 mv clang* llvm-7.0.0
 cd llvm*
@@ -122,7 +122,7 @@ cd ${HOME}/bin
 mkdir mpi  || true
 cd mpi
 wget -nc https://download.open-mpi.org/release/open-mpi/v4.0/openmpi-4.0.0.tar.gz
-tar -xvzf open*4.0.0*
+tar -xvzf open*4.0.0*tar.gz
 cd open*4.0.0
 
 #./configure \
