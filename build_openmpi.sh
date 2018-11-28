@@ -20,7 +20,7 @@ cd ${HOME}/bin/ncdu
 
 wget -nc https://dev.yorhel.nl/download/ncdu-1.13.tar.gz 
 
-tar -xvzkf ncdu-1.13.tar.gz 
+tar -xzkf ncdu-1.13.tar.gz || true
 
 cd ${HOME}/bin/ncdu/ncdu-1.13/ 
 
@@ -65,7 +65,7 @@ fi
 cd ${HOME}/bin
 mkdir -p ${HOME}/bin/hwloc && cd hwloc 
 wget -nc https://download.open-mpi.org/release/hwloc/v2.0/hwloc-2.0.2.tar.gz
-tar -xvzkf hwloc*2.0.2*tar.gz && cd hwloc*2.0.2
+tar -xzkf hwloc*2.0.2*tar.gz || true && cd hwloc*2.0.2
 ./configure --prefix=${HWLOC_HOME} && make && make all install
 
 ###################################################################################################
@@ -75,7 +75,7 @@ cd ${HOME}/bin
 #git clone https://github.com/pmix/pmix 
 mkdir -p ${HOME}/bin/pmix && cd pmix
 wget -nc https://github.com/pmix/pmix/releases/download/v3.0.2/pmix-3.0.2.tar.gz
-tar -xvkzf pmix*3.0.2*.tar.gz && cd pmix*3.0.2*
+tar -xkzf pmix*3.0.2*.tar.gz  || true && cd pmix*3.0.2*
 
 ./configure --prefix=${PMIX_HOME} --with-libevent=${LIBEVENT_HOME} && make && make all install
 
@@ -109,7 +109,7 @@ cd ${HOME}/bin
 mkdir -p ${HOME}/bin/llvm
 cd llvm
 wget -nc http://releases.llvm.org/7.0.0/clang+llvm-7.0.0-x86_64-linux-gnu-ubuntu-16.04.tar.xz
-tar -xkvzf clang*tar.gz
+tar -xkzf clang*tar.gz  || true 
 rm clang*tar.xz
 mv clang*04 llvm-7.0.0
 cd llvm*
@@ -127,7 +127,7 @@ cd ${HOME}/bin
 mkdir -p mpi
 cd mpi
 wget -nc https://download.open-mpi.org/release/open-mpi/v4.0/openmpi-4.0.0.tar.gz
-tar -xvkzf open*4.0.0*tar.gz
+tar -xkzf open*4.0.0*tar.gz  || true 
 cd open*4.0.0
 
 #./configure \
