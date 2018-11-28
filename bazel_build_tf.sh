@@ -11,7 +11,7 @@ set -e
 ###################################################################################################
 
 
-if [ ${PY_ENV} = "py36tfi" ]
+if [ "$DO_PY_INTEL" ]
 then
 export TF_BUILD=tensorflow_i
 export TF_BUILD_HOME=${TFI_HOME}
@@ -31,7 +31,7 @@ git clone https://github.com/tensorflow/tensorflow
 cd tensorflow
 fi;
 
-if [ ${PY_ENV} = "py36tfi" ]
+if [ "$DO_PY_INTEL" ]
 then
 cp -nR tensorflow ${TF_BUILD}
 fi
@@ -106,6 +106,8 @@ export HOST_C_COMPILER=gcc
 
 . activate ${PY_ENV}
 
+which python
+
 ./configure
 
 bazel clean --expunge && \
@@ -146,8 +148,6 @@ cd ${HOME}/bin/TF*/${TF_BUILD}/bazel-bin/tensorflow/tools/pip_package/build_pip_
 
 cd ${HOME}/bin/TF*/${TF_BUILD}_pkg
 pip install ten*
-
-
 
 
 
