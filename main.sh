@@ -44,6 +44,7 @@ source ~/.bashrc
 echo "Start building..."
 
 
+cd ${mydir}
 
 echo "Create conda envs..."
 ./create_conda_envs.sh
