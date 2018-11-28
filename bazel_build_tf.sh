@@ -23,11 +23,9 @@ fi
 export TF_BUILD_HOME=${HOME}/bin/TF-build-gpu
 
 
-cd ${HOME}/bin
 
-echo "We will move built TF c/cpp API to : ${TF_API_HOME}..."
 
-echo "Copy git clone of tensorflow c/cpp API to: ${TF_API_HOME}"
+echo "Git clone tensorflow c/cpp API to: ${TF_API_HOME}"
 
 cd ${HOME}/bin
 git clone https://github.com/tensorflow/tensorflow || true
@@ -46,12 +44,15 @@ cp -Rn tools ${TF_API_HOME}/include/tools
 echo "We will build TF in : ${TF_BUILD_HOME}..."
 mkdir -p ${TF_BUILD_HOME}
 
-cd ${TF_BUILD_HOME}
 
-if ! cd tensorflow; then
+if ! cd ${TF_BUILD_HOME}/${TF_BUILD}; then
+echo "Git clone tensorflow source to : ${TF_BUILD_HOME}..."
 git clone https://github.com/tensorflow/tensorflow
 cd ${TF_BUILD_HOME}/${TF_BUILD}
 fi;
+
+
+echo "Current dir is: ${PWD}..."
 
 git checkout r1.12
 
