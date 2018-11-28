@@ -36,14 +36,26 @@ source ~/.bashrc
 ###################################################################################################
 ###################################################################################################
 
+echo "Start building..."
+
+echo "Create conda envs..."
+
 ./create_conda_envs.sh
+echo "Build openmpi..."
 ./build_openmpi.sh
+
+echo "Build tf deps..."
 ./build_tf_deps.sh
+
+echo "Build tf..."
 ./bazel_build_tf.sh
+
+echo "Build horovod..."
 ./build_horovod.sh
 
 if [ -z "$DO_HOROVOD_TEST" ]
     then
+    echo "Test horovod..."
     ./test_horovod.sh || true
 fi
 
