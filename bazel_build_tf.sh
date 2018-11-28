@@ -13,7 +13,7 @@ set -e
 
 if [ "$DO_PY_INTEL" ]
 then
-export TF_BUILD=tensorflow_i
+export TF_BUILD=tensorflow
 export TF_API_HOME=${TFI_HOME}
 else
 export TF_BUILD=tensorflow
@@ -26,20 +26,21 @@ export TF_BUILD_HOME=${HOME}/bin/TF-build-gpu
 cd ${HOME}/bin
 
 echo "We will move built TF c/cpp API to : ${TF_API_HOME}..."
+
+echo "Copy git clone of tensorflow c/cpp API to: ${TF_API_HOME}"
+
+cd ${HOME}/bin
+git clone https://github.com/tensorflow/tensorflow || true
+cd tensorflow
+git checkout r1.12
+
 mkdir -p ${TF_API_HOME}
 mkdir -p ${TF_API_HOME}/lib64
 mkdir -p ${TF_API_HOME}/include
 
-
-echo "Copy git clone of tensorflow c/cpp API to: ${TF_API_HOME}"
-if ! cd ${TF_API_HOME}; then
-    git clone https://github.com/tensorflow/tensorflow
-    if [ "$DO_PY_INTEL" ]; then
-        mv tensorflow ${TF_BUILD}
-    fi
-    cd ${TF_BUILD}
-    git checkout r1.12
-fi
+cp -Rn tensorflow ${TF_API_HOME}/include/tensorflow
+cp -Rn third_party ${TF_API_HOME}/include/third_party
+cp -Rn tools ${TF_API_HOME}/include/tools
 
 
 echo "We will build TF in : ${TF_BUILD_HOME}..."
@@ -53,10 +54,6 @@ cd ${TF_BUILD_HOME}/${TF_BUILD}
 fi;
 
 git checkout r1.12
-if [ "$DO_PY_INTEL" ]; then
-    echo "Copy git clone of tensorflow to build dir: ${HOME}/bin/TF-build-gpu/${TF_BUILD}"
-    cp -nR ${TF_BUILD_HOME}/tensorflow ${TF_BUILD_HOME}/${TF_BUILD}
-fi
 
 
 
@@ -132,6 +129,8 @@ export HOST_C_COMPILER=gcc
 
 which python
 
+echo "Current directory: ${PWD}"
+
 ./configure
 
 bazel clean --expunge && \
@@ -166,17 +165,20 @@ bazel build \
     
 
 #pack tf package to wheel
-cd ${TF_BUILD_HOME}/${TF_BUILD}/bazel-bin/tensorflow/tools/pip_package/build_pip_package ../${TF_BUILD}_pkg
 
 . activate ${PY_ENV}
 
+if [ "$DO_PY_INTEL" ]
+then
+cd ${TF_BUILD_HOME}/${TF_BUILD}/bazel-bin/tensorflow/tools/pip_package/build_pip_package ../${TF_BUILD}_i_pkg
+cd ${TF_BUILD_HOME}/${TF_BUILD}_i_pkg
+else
+cd ${TF_BUILD_HOME}/${TF_BUILD}/bazel-bin/tensorflow/tools/pip_package/build_pip_package ../${TF_BUILD}_pkg
 cd ${TF_BUILD_HOME}/${TF_BUILD}_pkg
+fi
+
 pip install ten*
 
 
-
-cp -Rn tensorflow ${TF_API_HOME}/include/tensorflow
-cp -Rn third_party ${TF_API_HOME}/include/third_party
-cp -Rn tools ${TF_API_HOME}/include/tools
 cp -Rn ${TF_BUILD_HOME}/${TF_BUILD}/bazel-bin/tensorflow/*.so ${TF_API_HOME}/lib64
 
