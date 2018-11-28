@@ -20,11 +20,11 @@ export TF_BUILD=tensorflow
 export TF_BUILD_HOME=${TF_HOME}
 fi
 
+echo "We will build TF in : ${TF_HOME}..."
+
 cd ${HOME}/bin
-if ! cd TF-build-gpu; then
 mkdir -p TF-build-gpu 
 cd TF-build-gpu
-fi
 
 if ! cd tensorflow; then
 git clone https://github.com/tensorflow/tensorflow
@@ -33,15 +33,14 @@ fi;
 
 if [ "$DO_PY_INTEL" ]
 then
+echo "Copy git clone of tensorflow to : ${TF_HOME}..."
 cp -nR tensorflow ${TF_BUILD}
 fi
 
 cd ${TF_BUILD}/
-
-
 git checkout r1.12
 
-
+echo "Current dir is: ${PWD}..."
 
 ###################################################################################################
 ###################################################################################################
