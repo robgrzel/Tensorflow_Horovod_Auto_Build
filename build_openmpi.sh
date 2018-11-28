@@ -27,7 +27,7 @@ cd ${HOME}/bin/ncdu/ncdu-1.13/
 
 cd ${HOME}/bin
 
-git clone https://github.com/hishamhm/htop 
+git clone https://github.com/hishamhm/htop || true
 cd ${HOME}/bin/htop 
 ./autogen.sh && ./configure --prefix=${HTOP_HOME} && make
 
