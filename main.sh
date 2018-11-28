@@ -2,7 +2,7 @@
 #set -x
 set -e
 
-mydir=${PWD}
+export mydir=${PWD}
 
 echo ${mydir}
 
@@ -38,20 +38,27 @@ source ~/.bashrc
 
 echo "Start building..."
 
+
+
 echo "Create conda envs..."
 ./create_conda_envs.sh
+cd ${mydir}
 
 echo "Build openmpi..."
 ./build_openmpi.sh
+cd ${mydir}
 
 echo "Build tf deps..."
 ./build_tf_deps.sh
+cd ${mydir}
 
 echo "Build tf..."
 ./bazel_build_tf.sh
+cd ${mydir}
 
 echo "Build horovod..."
 ./build_horovod.sh
+cd ${mydir}
 
 if [ -z "$DO_HOROVOD_TEST" ]
     then
