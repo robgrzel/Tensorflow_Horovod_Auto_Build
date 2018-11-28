@@ -14,7 +14,8 @@ cd
 
 cd ${HOME}/bin
 
-mkdir ncdu 
+mkdir ${HOME}/bin/ncdu 
+cd ${HOME}/bin/ncdu
 wget https://dev.yorhel.nl/download/ncdu-1.13.tar.gz 
 tar xvzf ncdu-1.13.tar.gz 
 cd cd ${HOME}/bin/ncdu/ncdu-1.13/ 
