@@ -30,6 +30,7 @@ echo "Git clone tensorflow c/cpp API to: ${TF_API_HOME}"
 cd ${HOME}/bin
 git clone https://github.com/tensorflow/tensorflow || true
 cd tensorflow
+ls
 echo "Current dir is: ${PWD}..."
 git checkout r1.12
 
