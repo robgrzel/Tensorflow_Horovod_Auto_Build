@@ -60,11 +60,13 @@ echo "Build openmpi..."
 ./build_openmpi.sh
 cd ${mydir}
 
+
+fi;
+
 echo "Build tf deps..."
 ./build_tf_deps.sh
 cd ${mydir}
 
-fi;
 
 echo "Build tf..."
 ./bazel_build_tf.sh

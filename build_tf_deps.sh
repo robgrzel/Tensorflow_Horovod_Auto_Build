@@ -32,5 +32,27 @@ chmod 777 *
 tar -xzkf ComputeCpp*tar.gz || true 
 mv Com*64 ComputeCpp-CE-1.0.2
 
+###################################################################################################
+###################################################################################################
+
+cd ${HOME}/bin
+if ! cd nccl; then
+git clone https://github.com/NVIDIA/nccl
+cd nccl
+fi
+
+make -j src.build
+
+cd ${HOME}/bin
+if ! cd nccl-tests; then
+git clone https://github.com/NVIDIA/nccl-tests.git
+cd nccl-tests
+fi
+
+make
+
+./build/all_reduce_perf -b 8 -e 256M -f 2 -g 1
+
+
 
 

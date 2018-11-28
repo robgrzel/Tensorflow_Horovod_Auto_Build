@@ -12,7 +12,7 @@ cd
 ###################################################################################################
 
 #I thought OpenMpi want pmix, but reason is that my server uses NFS and it bring some pmix warnings
-#so we skipp installing livevent, pmix, prrte, hwloc, build only OpenMPI
+#so we skipp installing livevent, pmix, prrte, hwloc, buil  d only OpenMPI
 
 cd ${HOME}/bin
 #git clone https://github.com/open-mpi/ompi

@@ -65,14 +65,22 @@ git checkout r1.12
 
 
 
-echo "Current dir is: ${PWD}..."
 
 ###################################################################################################
 ###################################################################################################
 
+
+. deactivate || true
+
+. ~/.bashrc
+
+. activate ${PY_ENV}
 
 
 cd ${TF_BUILD_HOME}/${TF_BUILD}
+
+echo "Current dir is: ${PWD}..."
+echo "Export variables for bazel build"
 
 
 export TF_NEED_NGRAPH=0
@@ -97,6 +105,9 @@ export TF_NEED_IGNITE=0
 export TF_NEED_JEMALLOC=1
 export TF_NEED_COMPUTECPP=1
 export TF_NEED_CUDA=1
+
+set -x
+
 export TF_NCCL_VERSION="2.3"
 export NCCL_INSTALL_PATH=${NCCL_HOME}
 export TF_SET_ANDROID_WORKSPACE=0
@@ -123,16 +134,10 @@ export HOST_CXX_COMPILER=g++
 export HOST_C_COMPILER=gcc
 #export CLANG_CUDA_COMPILER_PATH=${LLVM_HOME}/bin
 
+set +x
 
-. deactivate || true
 
-. ~/.bashrc
-
-. activate ${PY_ENV}
-
-which python
-
-echo "Current directory: ${PWD}"
+echo "Current python: ${PYTHON_BIN_PATH}"
 
 ./configure
 
