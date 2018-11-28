@@ -60,7 +60,7 @@ fi
 which python
 
 pip install keras_preprocessing
-pip install keras_application
+pip install keras_applications
 
 ###################################################################################################
 ###################################################################################################
