@@ -35,7 +35,8 @@ then
 echo "source ${HOME}/bin/.exports.sh || true" >> ~/.bashrc
 fi
 
-yes | cp -rf .exports.sh ${HOME}/bin/.exports.sh || true
+rm ${HOME}/bin/.exports.sh || true
+cp -rf .exports.sh ${HOME}/bin/.exports.sh 
 
 source ~/.bashrc
 
