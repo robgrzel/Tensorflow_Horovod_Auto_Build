@@ -13,13 +13,15 @@ cd ${HOME}/bin
 
 if [ -z "$DO_INSTALL_MINICONDA3" ]
 then 
-
+echo "Install miniconda3..."
 wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
 mv Miniconda3-latest-Linux-x86_64.sh miniconda3.sh
 ./miniconda3.sh -b 
 echo 'export PATH="$HOME/miniconda3/bin:$PATH"' >> .bashrc 
 rm -f miniconda3.sh
 . ~/.bashrc
+else 
+echo "Skip install miniconda3..."
 
 fi
 ###################################################################################################
