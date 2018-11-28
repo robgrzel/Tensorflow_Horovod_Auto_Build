@@ -53,10 +53,10 @@ fi
 
 . activate ${PY_ENV}
 
-conda install numpy scipy scikit-learn mkl matplotlib pandas wheel pip 
+conda install -y numpy scipy scikit-learn mkl matplotlib pandas wheel pip 
 
-pip install keras_preprocessing
-pip install keras_application
+pip install -y keras_preprocessing
+pip install -y keras_application
 
 ###################################################################################################
 ###################################################################################################
