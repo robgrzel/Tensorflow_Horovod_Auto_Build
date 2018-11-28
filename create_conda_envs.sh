@@ -30,11 +30,11 @@ if [ -n "$DO_INSTALL_MINICONDA3" ]
         ./miniconda3.sh -b -p ${HOME}/bin/miniconda3
         rm -f miniconda3.sh
         . ~/.bashrc
-    else 
+        
+    else
         echo "Skip install miniconda3..."
-else 
+else
     echo "Skip install miniconda3..."
-
 fi
 ###################################################################################################
 ###################################################################################################
