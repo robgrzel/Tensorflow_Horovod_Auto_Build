@@ -70,7 +70,7 @@ cd ${mydir}
 
 
 echo "Build tf..."
-./bazel_build_tf.sh
+./build_tf.sh
 cd ${mydir}
 
 echo "Build horovod..."
