@@ -18,7 +18,7 @@ mkdir ${HOME}/bin/ncdu || true
 cd ${HOME}/bin/ncdu
 wget https://dev.yorhel.nl/download/ncdu-1.13.tar.gz 
 tar xvzf ncdu-1.13.tar.gz 
-cd cd ${HOME}/bin/ncdu/ncdu-1.13/ 
+cd ${HOME}/bin/ncdu/ncdu-1.13/ 
 ./configure --prefix=${NCDU_HOME} && make && make all install
 
 
@@ -28,7 +28,7 @@ cd cd ${HOME}/bin/ncdu/ncdu-1.13/
 cd ${HOME}/bin
 
 git clone https://github.com/hishamhm/htop 
-cd cd ${HOME}/bin/htop 
+cd ${HOME}/bin/htop 
 ./autogen.sh && ./configure --prefix=${HTOP_HOME} && make
 
 

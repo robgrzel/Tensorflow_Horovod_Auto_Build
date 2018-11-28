@@ -42,7 +42,7 @@ git checkout r1.12
 
 
 
-cd cd ${HOME}/bin/TF-build-gpu/${TF_BUILD}/
+cd ${HOME}/bin/TF-build-gpu/${TF_BUILD}/
 
 
 export TF_NEED_NGRAPH=0
@@ -138,7 +138,7 @@ cd ${HOME}/bin/TF*/${TF_BUILD}/bazel-bin/tensorflow/tools/pip_package/build_pip_
 
 . activate ${PY_ENV}
 
-cd cd ${HOME}/bin/TF*/${TF_BUILD}_pkg
+cd ${HOME}/bin/TF*/${TF_BUILD}_pkg
 pip install ten*
 
 
@@ -146,7 +146,7 @@ pip install ten*
 
 
 #copy c/cpp api libs to 
-cd cd ${HOME}/bin
+cd ${HOME}/bin
 git clone https://github.com/tensorflow/tensorflow
 cd tensorflow 
 git checkout r1.12
