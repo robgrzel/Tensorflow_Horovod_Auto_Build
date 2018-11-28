@@ -23,7 +23,7 @@ exit
 ###################################################################################################
 
 
-
+cd ${HOME}
 export "source ~/.exports.sh" >> ~/.bashrc
 cp .exports.sh ~/.exports.sh
 source ~/.bashrc

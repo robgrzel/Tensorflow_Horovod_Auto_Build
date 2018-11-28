@@ -11,20 +11,22 @@ cd
 ###################################################################################################
 
 
-cd
+cd ${HOME}/bin
+
 mkdir ncdu 
 wget https://dev.yorhel.nl/download/ncdu-1.13.tar.gz 
 tar xvzf ncdu-1.13.tar.gz 
-cd ~/ncdu/ncdu-1.13/ 
+cd cd ${HOME}/bin/ncdu/ncdu-1.13/ 
 ./configure --prefix=${NCDU_HOME} && make && make all install
 
 
 ###################################################################################################
 ###################################################################################################
 
-cd
+cd ${HOME}/bin
+
 git clone https://github.com/hishamhm/htop 
-cd ~/htop 
+cd cd ${HOME}/bin/htop 
 ./autogen.sh && ./configure --prefix=${HTOP_HOME} && make
 
 
@@ -38,7 +40,7 @@ cd ~/htop
 ###################################################################################################
 
 #pmix depends on libevent, deal with it first
-cd 
+cd ${HOME}/bin
 git clone https://github.com/libevent/libevent 
 cd libevent 
 ./autogen.sh && ./configure --prefix=${LIBEVENT_HOME} && make && make all install
@@ -48,7 +50,7 @@ cd libevent
 ###################################################################################################
 
 #probably we will need hwloc too
-cd 
+cd ${HOME}/bin
 #git clone https://github.com/open-mpi/hwloc 
 mkdir hwloc && cd hwloc 
 wget https://download.open-mpi.org/release/hwloc/v2.0/hwloc-2.0.2.tar.gz
@@ -61,7 +63,7 @@ cd hwloc*2.0.2
 ###################################################################################################
 
 
-cd 
+cd ${HOME}/bin
 #git clone https://github.com/pmix/pmix 
 mkdir pmix && cd pmix 
 wget https://github.com/pmix/pmix/releases/download/v3.0.2/pmix-3.0.2.tar.gz
@@ -73,7 +75,7 @@ cd pmix*3.0.2*
 ###################################################################################################
 ###################################################################################################
 
-cd 
+cd ${HOME}/bin
 git clone https://github.com/pmix/prrte
 cd prrte 
 git checkout v3.0
@@ -94,7 +96,7 @@ make && make all install
 ###################################################################################################
 ###################################################################################################
 
-cd
+cd ${HOME}/bin
 mkdir llvm
 cd llvm 
 wget http://releases.llvm.org/7.0.0/clang+llvm-7.0.0-x86_64-linux-gnu-ubuntu-16.04.tar.xz
@@ -108,7 +110,7 @@ cd llvm*
 
 
 
-cd
+cd ${HOME}/bin
 #git clone https://github.com/open-mpi/ompi
 #cd ~/ompi
 #git checkout v4.0.x

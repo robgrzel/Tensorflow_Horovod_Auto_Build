@@ -10,12 +10,12 @@ cd
 ###################################################################################################
 ###################################################################################################
 
-cd
+cd ${HOME}/bin
 git clone https://github.com/NVIDIA/nccl
 cd nccl
 make -j src.build
 
-cd
+cd ${HOME}/bin
 git clone https://github.com/NVIDIA/nccl-tests.git
 cd nccl-tests
 make
@@ -28,7 +28,7 @@ make
 ###################################################################################################
 
 
-cd 
+cd ${HOME}/bin
 
 . activate ${PY_ENV}
 
@@ -55,7 +55,7 @@ python -c "import tensorflow as tf; import horovod.tensorflow as hvd; hvd.init()
 ###################################################################################################
 ###################################################################################################
 
-cd
+cd ${HOME}/bin
 git clone https://github.com/alsrgv/benchmarks
 cd benchmarks
 
@@ -79,7 +79,7 @@ git checkout horovod_v2
 ###################################################################################################
 ###################################################################################################
 
-cd
+cd ${HOME}/bin
 
 cd benchmarks
 git checkout horovod_v2
@@ -89,6 +89,9 @@ git checkout horovod_v2
 
 . activate ${PY_ENV}
 
+###################################################################################################
+
+
 mpirun -np 1 python \
   scripts/tf_cnn_benchmarks/tf_cnn_benchmarks.py \
   --model resnet101 \
@@ -96,10 +99,35 @@ mpirun -np 1 python \
   --variable_update horovod
 
 
+###################################################################################################
+
 
 python \
   scripts/tf_cnn_benchmarks/tf_cnn_benchmarks.py \
   --model resnet101 \
   --batch_size 32 
 
+###################################################################################################
+
+cd benchmarks
+
+mpirun -np 2 \
+    -H 172.20.83.201:1,172.20.83.202:1 \
+    -bind-to none -map-by slot \
+    -x NCCL_DEBUG=INFO -x LD_LIBRARY_PATH -x PATH \
+    -mca pml ob1 \
+  python ${HOME}/benchmarks/scripts/tf_cnn_benchmarks/tf_cnn_benchmarks.py \
+  --model resnet101 \
+  --batch_size 32 \
+  --variable_update horovod
+
+
+cd horovod
+
+mpirun -np 2 \
+    -H 172.20.83.201:1,172.20.83.202:1 \
+    -bind-to none -map-by slot \
+    -x NCCL_DEBUG=INFO -x LD_LIBRARY_PATH -x PATH \
+    -mca pml ob1 \
+    python examples/tensorflow_mnist.py 
 

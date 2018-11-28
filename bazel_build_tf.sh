@@ -1,7 +1,7 @@
 #!/bin/bash
 set -x
 set -e
-cd
+cd ${HOME}/bin
 
 . deactivate
 . ~/.bashrc
@@ -21,7 +21,7 @@ export TF_BUILD=tensorflow
 export TF_BUILD_HOME=${TF_HOME}
 fi
 
-cd
+cd ${HOME}/bin
 mkdir TF-build-gpu
 cd TF-build-gpu
 git clone https://github.com/tensorflow/tensorflow
@@ -43,7 +43,7 @@ git checkout r1.12
 
 
 
-cd ~/TF-build-gpu/${TF_BUILD}/
+cd cd ${HOME}/bin/TF-build-gpu/${TF_BUILD}/
 
 
 export TF_NEED_NGRAPH=0
@@ -134,11 +134,11 @@ bazel build \
     
 
 #pack tf package to wheel
-~/TF*/${TF_BUILD}/bazel-bin/tensorflow/tools/pip_package/build_pip_package ../${TF_BUILD}_pkg
+cd ${HOME}/bin/TF*/${TF_BUILD}/bazel-bin/tensorflow/tools/pip_package/build_pip_package ../${TF_BUILD}_pkg
 
 . activate ${PY_ENV}
 
-cd ~/TF*/${TF_BUILD}_pkg
+cd cd ${HOME}/bin/TF*/${TF_BUILD}_pkg
 pip install ten*
 
 
@@ -146,15 +146,14 @@ pip install ten*
 
 
 #copy c/cpp api libs to 
-cd 
+cd cd ${HOME}/bin
 git clone https://github.com/tensorflow/tensorflow
 cd tensorflow 
 git checkout r1.12
 mkdir ${TF_BUILD_HOME}/lib64 -p
 mkdir ${TF_BUILD_HOME}/include -p
-cd tensorflow
 cp -R tensorflow ${TF_BUILD_HOME}/include/tensorflow
 cp -R third_party ${TF_BUILD_HOME}/include/third_party
 cp -R tools ${TF_BUILD_HOME}/include/tools
-cp -R ~/TF*/${TF_BUILD}/bazel-bin/tensorflow/*.so ${TF_BUILD_HOME}/lib64
+cp -R cd ${HOME}/bin/TF*/${TF_BUILD}/bazel-bin/tensorflow/*.so ${TF_BUILD_HOME}/lib64
 
