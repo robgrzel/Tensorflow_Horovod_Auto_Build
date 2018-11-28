@@ -105,6 +105,7 @@ mkdir llvm  || true
 cd llvm 
 wget http://releases.llvm.org/7.0.0/clang+llvm-7.0.0-x86_64-linux-gnu-ubuntu-16.04.tar.xz
 tar -xvf clang*
+rm clang*tar.xz
 mv clang* llvm-7.0.0
 cd llvm*
 
