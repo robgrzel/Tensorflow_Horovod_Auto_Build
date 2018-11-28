@@ -33,6 +33,7 @@ if [ -n "$DO_INSTALL_MINICONDA3" ]
         
     else
         echo "Skip install miniconda3..."
+    fi
 else
     echo "Skip install miniconda3..."
 fi
