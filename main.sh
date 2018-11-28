@@ -47,39 +47,31 @@ source ~/.bashrc
 
 echo "Start building..."
 
-if 0;
-then
-
 cd ${mydir}
-
 echo "Create conda envs..."
 ./create_conda_envs.sh
+
 cd ${mydir}
-
-fi;
-
 echo "Build openmpi..."
 ./build_openmpi.sh
+
 cd ${mydir}
-
-
-
 echo "Build tf deps..."
 ./build_tf_deps.sh
+
 cd ${mydir}
-
-
 echo "Build tf..."
 ./build_tf.sh
-cd ${mydir}
 
+cd ${mydir}
 echo "Build horovod..."
 ./build_horovod.sh
-cd ${mydir}
 
 if [ -z "$DO_HOROVOD_TEST" ]
     then
+    cd ${mydir}
     echo "Test horovod..."
     ./test_horovod.sh || true
 fi
 
+cd
