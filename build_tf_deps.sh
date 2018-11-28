@@ -31,8 +31,8 @@ cd computecpp
 wget -nc https://developer.codeplay.com/download/?key=1fad850f6661cd4364b81a14e1a4387c
 mv "index.html?key=1fad850f6661cd4364b81a14e1a4387c" ComputeCpp-CE-1.0.2-Ubuntu.16.04-64bit.tar.gz
 chmod 777 *
-tar -xzkf ComputeCpp*tar.gz || true 
-mv ComputeCpp-CE-1.0.2-Ubuntu.16.04-64bit ComputeCpp-CE-1.0.2
+tar -xzkf ComputeCpp-CE-1.0.2-Ubuntu.16.04-64bit.tar.gz || true 
+mv ComputeCpp-CE-1.0.2-Ubuntu-16.04-x86_64 ComputeCpp-CE-1.0.2
 fi
 
 ###################################################################################################
