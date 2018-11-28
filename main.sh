@@ -15,7 +15,7 @@ export DO_PY_INTEL=1
 export DO_HOROVOD_TEST=0
 export DO_INSTALL_MINICONDA3=1
 
-if [ -z "$DO_PY_INTEL" ]
+if [ "$DO_PY_INTEL" ]
 then 
     echo "Build with normal conda python packages"
     export PY_ENV=py36tfi
