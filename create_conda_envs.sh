@@ -1,7 +1,5 @@
 #!/bin/bash
 
-set -x
-set -e
 
 . deactivate || true
 . ~/.bashrc
@@ -21,6 +19,7 @@ mv Miniconda3-latest-Linux-x86_64.sh miniconda3.sh
 ./miniconda3.sh -b 
 echo 'export PATH="$HOME/miniconda3/bin:$PATH"' >> .bashrc 
 rm -f miniconda3.sh
+. ~/.bashrc
 
 fi
 ###################################################################################################

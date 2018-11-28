@@ -1,8 +1,5 @@
 #!/bin/bash
 
-set -x
-set -e
-cd ${HOME}/bin
 
 
 . deactivate || true
