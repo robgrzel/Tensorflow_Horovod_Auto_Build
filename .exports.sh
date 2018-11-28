@@ -48,11 +48,13 @@ export JEMALLOC_SHARE=${JEMALLOC_HOME}/share
 export JEMALLOC_LIB64=${JEMALLOC_HOME}/lib64
 
 if [ -d "$JEMALLOC_HOME" ]; then
-export LD_PRELOAD=${JEMALLOC_LIB64}/libjemalloc.so
 export LD_LIBRARY_PATH=${JEMALLOC_LIB64}:${LD_LIBRARY_PATH}
 export PATH=${JEMALLOC_HOME}:${JEMALLOC_BIN}:${JEMALLOC_INCLUDE}:${PATH}
 fi
 
+if [ -d "${JEMALLOC_LIB64}/libjemalloc.so" ]; then
+export LD_PRELOAD=${JEMALLOC_LIB64}/libjemalloc.so
+fi
 
 export CUDA_HOME=/usr/local/cuda-9.1
 
