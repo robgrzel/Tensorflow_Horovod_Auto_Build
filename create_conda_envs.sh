@@ -42,27 +42,21 @@ fi
 
 if [ ${PY_ENV} = "py36tfi" ]
 then
-echo "create miniconda3 python env with intel packages: py36tfi"
-
-conda env create -n py36tfi -c intel python=3.6 numpy scipy scikit-learn mkl matplotlib pandas wheel pip -y
-
-. activate ${PY_ENV}
-
-pip install keras_preprocessing
-pip install keras_application
+    echo "create miniconda3 python env with intel packages: py36tfi"
+    conda env create -n py36tfi -c intel python=3.6 -y
 
 else
+    echo "create miniconda3 python env with intel packages: py36tfb"
+    conda env create -n py36tfb python=3.6 -y
 
-echo "create miniconda3 python env with intel packages: py36tfb"
-
-conda env create -n py36tfb python=3.6 numpy scipy scikit-learn mkl matplotlib pandas wheel pip -y
+fi
 
 . activate ${PY_ENV}
 
+conda install numpy scipy scikit-learn mkl matplotlib pandas wheel pip 
+
 pip install keras_preprocessing
 pip install keras_application
-
-fi
 
 ###################################################################################################
 ###################################################################################################
