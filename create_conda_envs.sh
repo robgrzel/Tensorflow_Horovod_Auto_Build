@@ -10,6 +10,9 @@
 
 cd ${HOME}/bin
 
+echo "DO_PY_INTEL : ${DO_PY_INTEL}"
+echo "DO_HOROVOD_TEST : ${DO_HOROVOD_TEST}"
+echo "DO_INSTALL_MINICONDA3 : ${DO_INSTALL_MINICONDA3}"
 
 if [ -z "$DO_INSTALL_MINICONDA3" ]
 then 
