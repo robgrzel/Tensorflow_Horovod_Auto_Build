@@ -43,7 +43,7 @@ cd ${HOME}/bin/htop
 
 #pmix depends on libevent, deal with it first
 cd ${HOME}/bin 
-git clone https://github.com/libevent/libevent 
+git clone https://github.com/libevent/libevent || true
 cd libevent 
 ./autogen.sh && ./configure --prefix=${LIBEVENT_HOME} && make && make all install
 
@@ -80,7 +80,7 @@ cd pmix*3.0.2*
 ###################################################################################################
 
 cd ${HOME}/bin
-git clone https://github.com/pmix/prrte
+git clone https://github.com/pmix/prrte || true
 cd prrte 
 git checkout v3.0
 ./autogen.pl && \

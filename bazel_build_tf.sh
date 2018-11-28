@@ -147,7 +147,7 @@ pip install ten*
 
 #copy c/cpp api libs to 
 cd ${HOME}/bin
-git clone https://github.com/tensorflow/tensorflow
+git clone https://github.com/tensorflow/tensorflow || true
 cd tensorflow 
 git checkout r1.12
 mkdir ${TF_BUILD_HOME}/lib64 -p  || true

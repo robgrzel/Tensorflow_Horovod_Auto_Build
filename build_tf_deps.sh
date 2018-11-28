@@ -10,7 +10,7 @@ set -e
 ###################################################################################################
 
 cd ${HOME}/bin
-git clone https://github.com/jemalloc/jemalloc
+git clone https://github.com/jemalloc/jemalloc || true
 cd jemal*
 wget https://github.com/jemalloc/jemalloc/releases/download/5.1.0/jemalloc-5.1.0.tar.bz2
 tar xvjf jemalloc-5.1.0.tar.bz2

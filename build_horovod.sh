@@ -8,12 +8,12 @@ set -e
 ###################################################################################################
 
 cd ${HOME}/bin
-git clone https://github.com/NVIDIA/nccl
+git clone https://github.com/NVIDIA/nccl || true
 cd nccl
 make -j src.build
 
 cd ${HOME}/bin
-git clone https://github.com/NVIDIA/nccl-tests.git
+git clone https://github.com/NVIDIA/nccl-tests.git || true
 cd nccl-tests
 make
 
@@ -53,7 +53,7 @@ python -c "import tensorflow as tf; import horovod.tensorflow as hvd; hvd.init()
 ###################################################################################################
 
 cd ${HOME}/bin
-git clone https://github.com/alsrgv/benchmarks
+git clone https://github.com/alsrgv/benchmarks || true
 cd benchmarks
 
 
