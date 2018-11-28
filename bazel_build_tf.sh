@@ -26,7 +26,9 @@ echo "We will build TF in : ${HOME}/bin/TF-build-gpu/${TF_BUILD}..."
 mkdir -p ${HOME}/bin/TF-build-gpu/${TF_BUILD}
 
 echo "We will move built TF c/cpp API to : ${TF_API_HOME}..."
-mkdir -p ${HOME}/bin/${TF_BUILD}
+mkdir -p ${TF_API_HOME}
+mkdir -p ${TF_API_HOME}/lib64
+mkdir -p ${TF_API_HOME}/include
 
 cd ${HOME}/bin/TF-build-gpu
 
@@ -38,16 +40,18 @@ fi;
 if [ "$DO_PY_INTEL" ]
 then
 echo "Copy git clone of tensorflow to build dir: ${HOME}/bin/TF-build-gpu/${TF_BUILD}"
-cp -nR ${HOME}/bin/TF-build-gpu/tensorflow ${TF_API_HOME}
+cp -nR ${HOME}/bin/TF-build-gpu/tensorflow ${HOME}/bin/TF-build-gpu/${TF_BUILD}
 fi
 
-echo "Copy git clone of tensorflow c/cpp API to: ${HOME}/bin/${TF_BUILD}"
+echo "Copy git clone of tensorflow c/cpp API to: ${TF_API_HOME}"
 if ! cd ${TF_API_HOME}; then
 cp -nR ${HOME}/bin/TF-build-gpu/tensorflow ${TF_API_HOME}
 fi
 
 cd ${HOME}/bin/TF-build-gpu/${TF_BUILD}
 git checkout r1.12
+
+
 
 echo "Current dir is: ${PWD}..."
 
@@ -159,12 +163,6 @@ pip install ten*
 
 
 
-#copy c/cpp api libs to 
-
-
-git checkout r1.12
-mkdir -p ${TF_API_HOME}/lib64
-mkdir -p ${TF_API_HOME}/include
 cp -Rn tensorflow ${TF_API_HOME}/include/tensorflow
 cp -Rn third_party ${TF_API_HOME}/include/third_party
 cp -Rn tools ${TF_API_HOME}/include/tools
