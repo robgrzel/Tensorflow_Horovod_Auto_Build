@@ -3,6 +3,7 @@
 set -e
 clear
 
+export LD_PRELOAD=
 export mydir=${PWD}
 
 echo ${mydir}
