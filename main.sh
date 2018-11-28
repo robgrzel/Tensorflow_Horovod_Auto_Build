@@ -27,8 +27,8 @@ exit
 
 
 cd ${HOME}
-echo "source ~/.exports.sh" >> ~/.bashrc
-cp .exports.sh ~/.exports.sh
+echo "source ~/bin/.exports.sh" >> ~/.bashrc
+cp .exports.sh ~/bin/.exports.sh
 source ~/.bashrc
 
 
