@@ -27,23 +27,28 @@ if ! cd openmpi-4.0.0; then
 
     cd openmpi-4.0.0
 
-    . deactivate || true
-    . ~/.bashrc
-
-    . activate ${PY_ENV}
-           
-    ./configure \
-        --prefix=${OPENMPI_HOME} \
-        --with-cuda=${CUDA_HOME} \
-        --enable-static \
-        --enable-mpi-thread-multiple \
-        --enable-mpi-cxx \
-        --enable-mpi-cxx-seek \
-        CC=gcc CXX=g++
-
 fi
 
+MPI_SIZE=$(du -B 1 ${OPENMPI_LIB64} | cut -f 1 -d "   ")
+
+if ${MPI_SIZE}; then
+. deactivate || true
+. ~/.bashrc
+
+. activate ${PY_ENV}
+       
+./configure \
+    --prefix=${OPENMPI_HOME} \
+    --with-cuda=${CUDA_HOME} \
+    --enable-static \
+    --enable-mpi-thread-multiple \
+    --enable-mpi-cxx \
+    --enable-mpi-cxx-seek \
+    CC=gcc CXX=g++
+
 make && make all install 
+
+fi;
 
 #bazel for tensorflow need to see lib directory in mpi home
 ln -s ${OPENMPI_LIB64} ${OPENMPI_LIB}

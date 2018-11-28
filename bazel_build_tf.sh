@@ -145,6 +145,9 @@ bazel clean --expunge && \
 bazelpid=$(ps ax | grep bazel | awk 'NR==1{print $1}') && \
 kill -9 ${bazelpid} || true
 
+echo "Start building tf with bazel... Please be patient now!"
+
+
 bazel build \
     -c opt \
     --copt=-mfpmath=both \
