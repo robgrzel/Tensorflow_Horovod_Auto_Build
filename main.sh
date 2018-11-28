@@ -6,7 +6,7 @@ clear
 export LD_PRELOAD=
 export mydir=${PWD}
 
-echo ${mydir}
+echo "My CWD: ${mydir}"
 
 . deactivate || true
 . ~/.bashrc
@@ -29,6 +29,7 @@ fi
 
 echo "Copy .exports from ${PWD} to ${HOME}/bin"
 
+cd ${mydir}
 
 if [ ! -z $(grep "source ${HOME}/bin/.exports.sh || true" "${HOME}/.bashrc") ];
 then
