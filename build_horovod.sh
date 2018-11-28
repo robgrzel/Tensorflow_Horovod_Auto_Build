@@ -1,9 +1,10 @@
 #!/bin/bash
+
 set -x
 set -e
 cd
 
-. deactivate
+. deactivate >& /dev/null
 . ~/.bashrc
 
 
@@ -84,7 +85,7 @@ cd ${HOME}/bin
 cd benchmarks
 git checkout horovod_v2
 
-. deactivate
+. deactivate >& /dev/null
 . ~/.bashrc
 
 . activate ${PY_ENV}

@@ -3,7 +3,8 @@ set -x
 set -e
 cd
 
-. deactivate
+
+. deactivate >& /dev/null
 . ~/.bashrc
 
 export DO_PY_INTEL=0

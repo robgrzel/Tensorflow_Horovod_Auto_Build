@@ -1,8 +1,10 @@
 #!/bin/bash
+
 set -x
 set -e
 cd
 
+. deactivate >& /dev/null
 . deactivate
 . ~/.bashrc
 
@@ -136,7 +138,7 @@ cd open*4.0.0
 #skip hwloc, already included in openmpi, skip too
          
 
-. deactivate
+. deactivate >& /dev/null
 . ~/.bashrc
 
 . activate ${PY_ENV}

@@ -3,7 +3,7 @@ set -x
 set -e
 cd ${HOME}/bin
 
-. deactivate
+. deactivate >& /dev/null
 . ~/.bashrc
 
 
@@ -95,7 +95,8 @@ export HOST_C_COMPILER=gcc
 #export CLANG_CUDA_COMPILER_PATH=${LLVM_HOME}/bin
 
 
-. deactivate
+. deactivate >& /dev/null
+
 . ~/.bashrc
 
 . activate ${PY_ENV}

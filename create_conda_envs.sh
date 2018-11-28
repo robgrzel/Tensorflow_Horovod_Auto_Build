@@ -1,9 +1,10 @@
 #!/bin/bash
+
 set -x
 set -e
 cd
 
-. deactivate
+. deactivate >& /dev/null
 . ~/.bashrc
 
 
