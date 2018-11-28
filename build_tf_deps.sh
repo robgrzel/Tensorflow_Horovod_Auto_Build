@@ -1,6 +1,6 @@
 #!/bin/bash
 
-
+set -e
 
 . deactivate || true
 . ~/.bashrc
@@ -24,7 +24,8 @@ make all install
 ###################################################################################################
 
 cd ${HOME}/bin
-mkdir computecpp && cd computecpp
+mkdir computecpp  || true
+cd computecpp
 wget https://developer.codeplay.com/download/?key=1fad850f6661cd4364b81a14e1a4387c
 mv * ComputeCpp-CE-1.0.2-Ubuntu.16.04-64bit.tar.gz
 chmod 777 *

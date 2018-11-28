@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -e
+
 . deactivate || true
 . ~/.bashrc
 
@@ -19,7 +21,7 @@ export TF_BUILD_HOME=${TF_HOME}
 fi
 
 cd ${HOME}/bin
-mkdir TF-build-gpu
+mkdir TF-build-gpu  || true
 cd TF-build-gpu
 git clone https://github.com/tensorflow/tensorflow
 
@@ -148,8 +150,8 @@ cd cd ${HOME}/bin
 git clone https://github.com/tensorflow/tensorflow
 cd tensorflow 
 git checkout r1.12
-mkdir ${TF_BUILD_HOME}/lib64 -p
-mkdir ${TF_BUILD_HOME}/include -p
+mkdir ${TF_BUILD_HOME}/lib64 -p  || true
+mkdir ${TF_BUILD_HOME}/include -p  || true
 cp -R tensorflow ${TF_BUILD_HOME}/include/tensorflow
 cp -R third_party ${TF_BUILD_HOME}/include/third_party
 cp -R tools ${TF_BUILD_HOME}/include/tools

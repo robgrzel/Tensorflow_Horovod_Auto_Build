@@ -1,6 +1,6 @@
 #!/bin/bash
 
-set -x
+#set -x
 set -e
 cd
 
@@ -14,7 +14,7 @@ cd
 
 cd ${HOME}/bin
 
-mkdir ${HOME}/bin/ncdu 
+mkdir ${HOME}/bin/ncdu || true
 cd ${HOME}/bin/ncdu
 wget https://dev.yorhel.nl/download/ncdu-1.13.tar.gz 
 tar xvzf ncdu-1.13.tar.gz 
@@ -42,7 +42,7 @@ cd cd ${HOME}/bin/htop
 ###################################################################################################
 
 #pmix depends on libevent, deal with it first
-cd ${HOME}/bin
+cd ${HOME}/bin 
 git clone https://github.com/libevent/libevent 
 cd libevent 
 ./autogen.sh && ./configure --prefix=${LIBEVENT_HOME} && make && make all install
@@ -54,7 +54,8 @@ cd libevent
 #probably we will need hwloc too
 cd ${HOME}/bin
 #git clone https://github.com/open-mpi/hwloc 
-mkdir hwloc && cd hwloc 
+mkdir hwloc  || true
+cd hwloc 
 wget https://download.open-mpi.org/release/hwloc/v2.0/hwloc-2.0.2.tar.gz
 tar -xvzf hwloc*2.0.2*
 cd hwloc*2.0.2
@@ -67,7 +68,8 @@ cd hwloc*2.0.2
 
 cd ${HOME}/bin
 #git clone https://github.com/pmix/pmix 
-mkdir pmix && cd pmix 
+mkdir pmix  || true
+cd pmix 
 wget https://github.com/pmix/pmix/releases/download/v3.0.2/pmix-3.0.2.tar.gz
 tar -xvzf pmix*3.0.2*
 cd pmix*3.0.2*
@@ -99,7 +101,7 @@ make && make all install
 ###################################################################################################
 
 cd ${HOME}/bin
-mkdir llvm
+mkdir llvm  || true
 cd llvm 
 wget http://releases.llvm.org/7.0.0/clang+llvm-7.0.0-x86_64-linux-gnu-ubuntu-16.04.tar.xz
 tar -xvf clang*
@@ -116,7 +118,8 @@ cd ${HOME}/bin
 #git clone https://github.com/open-mpi/ompi
 #cd ~/ompi
 #git checkout v4.0.x
-mkdir mpi && cd mpi
+mkdir mpi  || true
+cd mpi
 wget https://download.open-mpi.org/release/open-mpi/v4.0/openmpi-4.0.0.tar.gz
 tar -xvzf open*4.0.0*
 cd open*4.0.0

@@ -1,5 +1,5 @@
 #!/bin/bash
-
+set -e
 . deactivate || true
 . ~/.bashrc
 
