@@ -8,13 +8,18 @@ set -e
 ###################################################################################################
 
 cd ${HOME}/bin
-git clone https://github.com/NVIDIA/nccl || true
+if ! cd nccl; then
+git clone https://github.com/NVIDIA/nccl
 cd nccl
+fi
+
 make -j src.build
 
 cd ${HOME}/bin
-git clone https://github.com/NVIDIA/nccl-tests.git || true
+if ! cd nccl-tests; then
+git clone https://github.com/NVIDIA/nccl-tests.git
 cd nccl-tests
+fi
 make
 
 ./build/all_reduce_perf -b 8 -e 256M -f 2 -g 1
@@ -53,8 +58,10 @@ python -c "import tensorflow as tf; import horovod.tensorflow as hvd; hvd.init()
 ###################################################################################################
 
 cd ${HOME}/bin
-git clone https://github.com/alsrgv/benchmarks || true
+if ! cd benchmarks; then
+git clone https://github.com/alsrgv/benchmarks
 cd benchmarks
+fi
 
 
 #Cloning into 'benchmarks'...

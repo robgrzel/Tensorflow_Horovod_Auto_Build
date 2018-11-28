@@ -14,11 +14,16 @@ cd
 
 cd ${HOME}/bin
 
-mkdir ${HOME}/bin/ncdu || true
+mkdir -p ${HOME}/bin/ncdu
+
 cd ${HOME}/bin/ncdu
+
 wget -nc https://dev.yorhel.nl/download/ncdu-1.13.tar.gz 
-tar xvzf ncdu-1.13.tar.gz 
+
+tar -xvzkf ncdu-1.13.tar.gz 
+
 cd ${HOME}/bin/ncdu/ncdu-1.13/ 
+
 ./configure --prefix=${NCDU_HOME} && make && make all install
 
 
@@ -26,9 +31,11 @@ cd ${HOME}/bin/ncdu/ncdu-1.13/
 ###################################################################################################
 
 cd ${HOME}/bin
+if ! cd htop; then 
+git clone https://github.com/hishamhm/htop
+cd ${HOME}/bin/htop
+fi
 
-git clone https://github.com/hishamhm/htop || true
-cd ${HOME}/bin/htop 
 ./autogen.sh && ./configure --prefix=${HTOP_HOME} && make
 
 
@@ -43,8 +50,11 @@ cd ${HOME}/bin/htop
 
 #pmix depends on libevent, deal with it first
 cd ${HOME}/bin 
-git clone https://github.com/libevent/libevent || true
+if ! cd libevent; then
+git clone https://github.com/libevent/libevent
 cd libevent 
+fi
+
 ./autogen.sh && ./configure --prefix=${LIBEVENT_HOME} && make && make all install
 
 
@@ -53,35 +63,31 @@ cd libevent
 
 #probably we will need hwloc too
 cd ${HOME}/bin
-#git clone https://github.com/open-mpi/hwloc 
-mkdir hwloc  || true
-cd hwloc 
+mkdir -p ${HOME}/bin/hwloc && cd hwloc 
 wget -nc https://download.open-mpi.org/release/hwloc/v2.0/hwloc-2.0.2.tar.gz
-tar -xvzf hwloc*2.0.2*tar.gz
-cd hwloc*2.0.2
+tar -xvzkf hwloc*2.0.2*tar.gz && cd hwloc*2.0.2
 ./configure --prefix=${HWLOC_HOME} && make && make all install
 
-
 ###################################################################################################
 ###################################################################################################
-
 
 cd ${HOME}/bin
 #git clone https://github.com/pmix/pmix 
-mkdir pmix  || true
-cd pmix 
+mkdir -p ${HOME}/bin/pmix && cd pmix
 wget -nc https://github.com/pmix/pmix/releases/download/v3.0.2/pmix-3.0.2.tar.gz
-tar -xvzf pmix*3.0.2*.tar.gz
-cd pmix*3.0.2*
-./configure --prefix=${PMIX_HOME} --with-libevent=${LIBEVENT_HOME} && make && make all install
+tar -xvkzf pmix*3.0.2*.tar.gz && cd pmix*3.0.2*
 
+./configure --prefix=${PMIX_HOME} --with-libevent=${LIBEVENT_HOME} && make && make all install
 
 ###################################################################################################
 ###################################################################################################
 
 cd ${HOME}/bin
-git clone https://github.com/pmix/prrte || true
+if ! cd prrte; then
+git clone https://github.com/pmix/prrte
 cd prrte 
+fi;
+
 git checkout v3.0
 ./autogen.pl && \
 ./configure \
@@ -96,19 +102,18 @@ git checkout v3.0
 make && make all install
 
 
-
 ###################################################################################################
 ###################################################################################################
 
 cd ${HOME}/bin
-mkdir llvm  || true
-cd llvm 
+mkdir -p ${HOME}/bin/llvm
+cd llvm
 wget -nc http://releases.llvm.org/7.0.0/clang+llvm-7.0.0-x86_64-linux-gnu-ubuntu-16.04.tar.xz
-tar -xvf clang*tar.gz
+tar -xkvzf clang*tar.gz
 rm clang*tar.xz
-mv clang* llvm-7.0.0
+mv clang*04 llvm-7.0.0
 cd llvm*
-
+    
 
 ###################################################################################################
 ###################################################################################################
@@ -119,10 +124,10 @@ cd ${HOME}/bin
 #git clone https://github.com/open-mpi/ompi
 #cd ~/ompi
 #git checkout v4.0.x
-mkdir mpi  || true
+mkdir -p mpi
 cd mpi
 wget -nc https://download.open-mpi.org/release/open-mpi/v4.0/openmpi-4.0.0.tar.gz
-tar -xvzf open*4.0.0*tar.gz
+tar -xvkzf open*4.0.0*tar.gz
 cd open*4.0.0
 
 #./configure \

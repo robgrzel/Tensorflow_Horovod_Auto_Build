@@ -21,13 +21,19 @@ export TF_BUILD_HOME=${TF_HOME}
 fi
 
 cd ${HOME}/bin
-mkdir TF-build-gpu  || true
+if ! cd TF-build-gpu; then
+mkdir -p TF-build-gpu 
 cd TF-build-gpu
+fi
+
+if ! cd tensorflow; then
 git clone https://github.com/tensorflow/tensorflow
+cd tensorflow
+fi;
 
 if [ ${PY_ENV} = "py36tfi" ]
 then
-cp -R tensorflow ${TF_BUILD}
+cp -nR tensorflow ${TF_BUILD}
 fi
 
 cd ${TF_BUILD}/
@@ -94,7 +100,7 @@ export HOST_C_COMPILER=gcc
 #export CLANG_CUDA_COMPILER_PATH=${LLVM_HOME}/bin
 
 
-. deactivate >& /dev/null
+. deactivate || true
 
 . ~/.bashrc
 
@@ -147,13 +153,16 @@ pip install ten*
 
 #copy c/cpp api libs to 
 cd ${HOME}/bin
-git clone https://github.com/tensorflow/tensorflow || true
+if ! cd tensorflow; then
+git clone https://github.com/tensorflow/tensorflow
 cd tensorflow 
+fi
+
 git checkout r1.12
-mkdir ${TF_BUILD_HOME}/lib64 -p  || true
-mkdir ${TF_BUILD_HOME}/include -p  || true
-cp -R tensorflow ${TF_BUILD_HOME}/include/tensorflow
-cp -R third_party ${TF_BUILD_HOME}/include/third_party
-cp -R tools ${TF_BUILD_HOME}/include/tools
-cp -R cd ${HOME}/bin/TF*/${TF_BUILD}/bazel-bin/tensorflow/*.so ${TF_BUILD_HOME}/lib64
+mkdir -p ${TF_BUILD_HOME}/lib64
+mkdir -p ${TF_BUILD_HOME}/include
+cp -Rn tensorflow ${TF_BUILD_HOME}/include/tensorflow
+cp -Rn third_party ${TF_BUILD_HOME}/include/third_party
+cp -Rn tools ${TF_BUILD_HOME}/include/tools
+cp -Rn ${HOME}/bin/TF*/${TF_BUILD}/bazel-bin/tensorflow/*.so ${TF_BUILD_HOME}/lib64
 

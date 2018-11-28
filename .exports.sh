@@ -1,6 +1,5 @@
 #!/bin/bash
 
-cd ${HOME}/bin
 
 . deactivate || true
 
@@ -10,7 +9,7 @@ cd ${HOME}/bin
 
 export TMP=${HOME}/tmp
 
-mkdir ${HOME}/bin || true
+mkdir ${HOME}/bin -p
 
 export CONDA3_HOME=${HOME}/bin/miniconda3
 export CONDA3_BIN=${CONDA3_HOME}/bin

@@ -12,7 +12,7 @@ set -e
 
 . activate py36tfi
 
-cd benchmarks
+cd ${HOME}/bin/benchmarks
 
 mpirun -np 2 \
     -H 172.20.83.201:1,172.20.83.202:1 \
