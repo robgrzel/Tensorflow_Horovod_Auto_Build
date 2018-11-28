@@ -158,7 +158,6 @@ bazel build \
     --copt=-O3 \
     --config=opt \
     --config=mkl \
-    --config=cuda \
     --action_env PATH="$PATH" \
     //tensorflow/tools/pip_package:build_pip_package \
     //tensorflow:libtensorflow.so \
