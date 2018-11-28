@@ -45,15 +45,17 @@ then
     echo "create miniconda3 python env with intel packages: py36tfi"
     conda create -y -n py36tfi -c intel python=3.6 || true
 
+    conda install -y -c intel numpy scipy scikit-learn mkl matplotlib pandas wheel pip 
+
 else
     echo "create miniconda3 python env with conda packages: py36tfb"
     conda create -y -n py36tfb python=3.6 || true
 
+    conda install -y numpy scipy scikit-learn mkl matplotlib pandas wheel pip 
+
 fi
 
 . activate ${PY_ENV}
-
-conda install -y numpy scipy scikit-learn mkl matplotlib pandas wheel pip 
 
 pip install -y keras_preprocessing
 pip install -y keras_application
