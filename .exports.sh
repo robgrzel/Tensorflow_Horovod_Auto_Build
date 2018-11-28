@@ -1,6 +1,5 @@
 #!/bin/bash
-set -x
-set -e
+
 cd ${HOME}/bin
 
 . deactivate
@@ -11,7 +10,7 @@ cd ${HOME}/bin
 
 export TMP=${HOME}/tmp
 
-mkdir ${HOME}/bin | true
+mkdir ${HOME}/bin 
 
 
 export HTOP_HOME=${HOME}/bin/htop/build
