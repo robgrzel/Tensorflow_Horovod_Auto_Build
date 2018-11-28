@@ -29,9 +29,11 @@ if ! cd openmpi-4.0.0; then
 
 fi
 
-MPI_SIZE=$(du -B 1 ${OPENMPI_LIB64} | cut -f 1 -d "   ")
+MPI_SIZE=$(du -sh ${OPENMPI_LIB64} | awk '{print $1}');
 
-if ${MPI_SIZE}; then
+
+if [[ ! $MPI_SIZE == *"M"* ]]; then
+
 . deactivate || true
 . ~/.bashrc
 
@@ -46,12 +48,14 @@ if ${MPI_SIZE}; then
     --enable-mpi-cxx-seek \
     CC=gcc CXX=g++
 
-make && make all install 
+make && make all install
 
 fi;
 
 #bazel for tensorflow need to see lib directory in mpi home
+if ! cd ${OPENMPI_LIB}; then
 ln -s ${OPENMPI_LIB64} ${OPENMPI_LIB}
+fi;
 
 ###################################################################################################
 ###################################################################################################
