@@ -109,11 +109,9 @@ cd ${HOME}/bin
 mkdir -p ${HOME}/bin/llvm
 cd llvm
 wget -nc http://releases.llvm.org/7.0.0/clang+llvm-7.0.0-x86_64-linux-gnu-ubuntu-16.04.tar.xz
-tar -xkzf clang*tar.gz  || true 
-rm clang*tar.xz
+tar -xkzf clang+llvm-7.0.0-x86_64-linux-gnu-ubuntu-16.04.tar.xz  || true 
 mv clang*04 llvm-7.0.0
-cd llvm*
-    
+cd llvm-7.0.0
 
 ###################################################################################################
 ###################################################################################################
@@ -127,7 +125,7 @@ cd ${HOME}/bin
 mkdir -p mpi
 cd mpi
 wget -nc https://download.open-mpi.org/release/open-mpi/v4.0/openmpi-4.0.0.tar.gz
-tar -xkzf open*4.0.0*tar.gz  || true 
+tar -xkzf openmpi-4.0.0.tar.gz  || true 
 cd open*4.0.0
 
 #./configure \
