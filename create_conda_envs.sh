@@ -16,16 +16,24 @@ echo "DO_HOROVOD_TEST : ${DO_HOROVOD_TEST}"
 echo "DO_INSTALL_MINICONDA3 : ${DO_INSTALL_MINICONDA3}"
 
 if [ -n "$DO_INSTALL_MINICONDA3" ]
-then 
-echo "Install miniconda3..."
-wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
-mv Miniconda3-latest-Linux-x86_64.sh miniconda3.sh
-chmod 755 miniconda3.sh
-./miniconda3.sh -b -p ${HOME}/bin/miniconda3
-rm -f miniconda3.sh
-. ~/.bashrc
+
+    then 
+    echo "Check if miniconda3 already exisist"
+
+    if [ ! -a "${HOME}/bin/miniconda3/bin/python" ]
+    then
+        echo "Not existing, install miniconda3..."
+
+        wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
+        mv Miniconda3-latest-Linux-x86_64.sh miniconda3.sh
+        chmod 755 miniconda3.sh
+        ./miniconda3.sh -b -p ${HOME}/bin/miniconda3
+        rm -f miniconda3.sh
+        . ~/.bashrc
+    else 
+        echo "Skip install miniconda3..."
 else 
-echo "Skip install miniconda3..."
+    echo "Skip install miniconda3..."
 
 fi
 ###################################################################################################
@@ -35,9 +43,7 @@ if [ ${PY_ENV} = "py36tfi" ]
 then
 echo "create miniconda3 python env with intel packages: py36tfi"
 
-conda env create -n py36tfi -c intel python=3.6 \
-  numpy scipy scikit-learn mkl \
-  matplotlib pandas wheel pip -y
+conda env create -n py36tfi -c intel python=3.6 numpy scipy scikit-learn mkl matplotlib pandas wheel pip -y
 
 . activate ${PY_ENV}
 
@@ -48,9 +54,7 @@ else
 
 echo "create miniconda3 python env with intel packages: py36tfb"
 
-conda env create -n py36tfb python=3.6 \
-  numpy scipy scikit-learn mkl \
-  matplotlib pandas wheel pip -y
+conda env create -n py36tfb python=3.6 numpy scipy scikit-learn mkl matplotlib pandas wheel pip -y
 
 . activate ${PY_ENV}
 
