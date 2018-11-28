@@ -20,8 +20,10 @@ if [ -n "$DO_INSTALL_MINICONDA3" ]
     then 
     echo "Check if miniconda3 already exisist"
 
-    if [ ! -a "${HOME}/bin/miniconda3/bin/python" ]
+    if [ -a "${HOME}/bin/miniconda3/bin/python" ]
     then
+        echo "Skip install miniconda3..."        
+    else
         echo "Not existing, install miniconda3..."
 
         wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
@@ -31,8 +33,6 @@ if [ -n "$DO_INSTALL_MINICONDA3" ]
         rm -f miniconda3.sh
         . ~/.bashrc
         
-    else
-        echo "Skip install miniconda3..."
     fi
 else
     echo "Skip install miniconda3..."
