@@ -7,7 +7,9 @@ cd
 . deactivate || true
 . ~/.bashrc
 
-export DO_PY_INTEL=0
+export DO_PY_INTEL=1
+export DO_HOROVOD_TEST=0
+export DO_INSTALL_MINICONDA3=1
 
 if [ -z "$DO_PY_INTEL" ]
 then 
@@ -38,4 +40,9 @@ source ~/.bashrc
 ./build_tf_deps.sh
 ./bazel_build_tf.sh
 ./build_horovod.sh
+
+if [ -z "$DO_HOROVOD_TEST" ]
+    then
+    ./test_horovod.sh || true
+fi
 
