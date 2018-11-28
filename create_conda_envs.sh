@@ -15,7 +15,7 @@ echo "DO_PY_INTEL : ${DO_PY_INTEL}"
 echo "DO_HOROVOD_TEST : ${DO_HOROVOD_TEST}"
 echo "DO_INSTALL_MINICONDA3 : ${DO_INSTALL_MINICONDA3}"
 
-if [ -z "$DO_INSTALL_MINICONDA3" ]
+if [ -n "$DO_INSTALL_MINICONDA3" ]
 then 
 echo "Install miniconda3..."
 wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh

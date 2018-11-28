@@ -52,7 +52,7 @@ export LD_LIBRARY_PATH=${JEMALLOC_LIB64}:${LD_LIBRARY_PATH}
 export PATH=${JEMALLOC_HOME}:${JEMALLOC_BIN}:${JEMALLOC_INCLUDE}:${PATH}
 fi
 
-if [ -d "${JEMALLOC_LIB64}/libjemalloc.so" ]; then
+if [ -a "${JEMALLOC_LIB64}/libjemalloc.so" ]; then
 export LD_PRELOAD=${JEMALLOC_LIB64}/libjemalloc.so
 fi
 
