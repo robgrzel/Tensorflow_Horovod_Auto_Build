@@ -43,11 +43,11 @@ fi
 if [ ${DO_PY_INTEL} ]
 then
     echo "create miniconda3 python env with intel packages: py36tfi"
-    conda create -y -n py36tfi -c intel python=3.6
+    conda create -y -n py36tfi -c intel python=3.6 || true
 
 else
     echo "create miniconda3 python env with conda packages: py36tfb"
-    conda create -y -n py36tfb python=3.6
+    conda create -y -n py36tfb python=3.6 || true
 
 fi
 
