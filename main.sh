@@ -14,6 +14,7 @@ echo "My CWD: ${mydir}"
 export DO_PY_INTEL=1
 export DO_HOROVOD_TEST=0
 export DO_INSTALL_MINICONDA3=1
+export DO_INSTALL_HOROVOD_WITH_NCCL=0
 
 if [ "$DO_PY_INTEL" ]
 then 
