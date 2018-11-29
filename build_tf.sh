@@ -10,38 +10,9 @@ set -e
 ###################################################################################################
 ###################################################################################################
 
-
-if [ "$DO_PY_INTEL" ]
-then
 export TF_BUILD=tensorflow
-export TF_API_HOME=${TFI_HOME}
-else
-export TF_BUILD=tensorflow
-export TF_API_HOME=${TF_HOME}
-fi
 
 export TF_BUILD_HOME=${HOME}/bin/TF-build-gpu
-
-
-
-echo "Git clone tensorflow c/cpp API to: ${PWD}/tensorflow"
-
-cd ${HOME}/bin
-
-if ! cd tensorflow; then
-git clone https://github.com/tensorflow/tensorflow || true
-cd tensorflow
-fi
-
-git checkout r1.12
-
-mkdir -p ${TF_API_HOME}
-mkdir -p ${TF_API_HOME}/lib64
-mkdir -p ${TF_API_HOME}/include
-
-cp -Rn tensorflow ${TF_API_HOME}/include/tensorflow
-cp -Rn third_party ${TF_API_HOME}/include/third_party
-cp -Rn tools ${TF_API_HOME}/include/tools
 
 
 
@@ -135,6 +106,10 @@ export HOST_C_COMPILER=gcc
 #export CLANG_CUDA_COMPILER_PATH=${LLVM_HOME}/bin
 
 set +x
+
+
+###################################################################################################
+###################################################################################################
 
 
 echo "Current python: ${PYTHON_BIN_PATH}"

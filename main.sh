@@ -61,7 +61,11 @@ echo "Build tf deps..."
 
 cd ${mydir}
 echo "Build tf..."
-./build_tf.sh
+#./build_tf.sh
+
+cd ${mydir}
+echo "Postprocess tf..."
+./postprocess_tf.sh
 
 cd ${mydir}
 echo "Build horovod..."

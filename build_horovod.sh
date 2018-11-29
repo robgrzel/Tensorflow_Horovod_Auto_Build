@@ -51,7 +51,6 @@ fi
 #Receiving objects: 100% (2546/2546), 1.31 MiB | 2.65 MiB/s, done.
 #Resolving deltas: 100% (1813/1813), done.
 
-
 git checkout horovod_v2
 
 #Branch horovod_v2 set up to track remote branch horovod_v2 from origin.
