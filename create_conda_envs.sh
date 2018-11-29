@@ -40,23 +40,29 @@ fi
 
 if [ ${DO_PY_INTEL} ]
 then
+    if ! source activate py36tfi 2> /dev/null; then
     echo "create miniconda3 python env with intel packages: py36tfi"
     conda create -y -n py36tfi -c intel python=3.6 || true
-
     conda install -y -c intel numpy scipy scikit-learn mkl matplotlib pandas wheel pip 
+    conda install -y -c intel libopencv opencv py-opencv 
+    fi;
 
 else
+    if ! source activate py36tfb 2> /dev/null; then
     echo "create miniconda3 python env with conda packages: py36tfb"
     conda create -y -n py36tfb python=3.6 || true
-
     conda install -y numpy scipy scikit-learn mkl matplotlib pandas wheel pip 
-
+    conda install -y libopencv opencv py-opencv 
+    fi
 fi
 
 . activate ${PY_ENV}
 
 which python
 
+pip install opencv-contrib-python opencv-python
+
+pip install absl-py
 pip install keras_preprocessing
 pip install keras_applications
 
