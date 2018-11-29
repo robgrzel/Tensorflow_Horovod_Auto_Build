@@ -10,3 +10,5 @@ chmod 755 * && ./main.sh
 
 Then keep fingers crossed and hope it works!
 Wish You good luck!
+  
+Note: Building take time. A lot of time. You may wait 1hour before it will finish.
