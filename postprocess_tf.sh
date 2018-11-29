@@ -9,6 +9,12 @@
 . activate ${PY_ENV}
 
 
+export TF_BUILD=tensorflow
+
+export TF_BUILD_HOME=${HOME}/bin/TF-build-gpu
+
+
+
 echo "Finish our first goal, wheel python package..."
 
 
