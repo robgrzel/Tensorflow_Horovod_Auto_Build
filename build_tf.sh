@@ -141,9 +141,10 @@ echo "Current python: ${PYTHON_BIN_PATH}"
 
 ./configure
 
-bazel clean --expunge && \
-bazelpid=$(ps ax | grep bazel | awk 'NR==1{print $1}') && \
-kill -9 ${bazelpid} || true
+#do when debug
+#bazel clean --expunge && \
+#bazelpid=$(ps ax | grep bazel | awk 'NR==1{print $1}') && \
+#kill -9 ${bazelpid} || true
 
 echo "Start building tf with bazel... Please be patient now!"
 
@@ -174,21 +175,4 @@ bazel build \
 #--copt=-mavx512er \
     
 
-#pack tf package to wheel
-
-. activate ${PY_ENV}
-
-if [ "$DO_PY_INTEL" ]
-then
-cd ${TF_BUILD_HOME}/${TF_BUILD}/bazel-bin/tensorflow/tools/pip_package/build_pip_package ../${TF_BUILD}_i_pkg
-cd ${TF_BUILD_HOME}/${TF_BUILD}_i_pkg
-else
-cd ${TF_BUILD_HOME}/${TF_BUILD}/bazel-bin/tensorflow/tools/pip_package/build_pip_package ../${TF_BUILD}_pkg
-cd ${TF_BUILD_HOME}/${TF_BUILD}_pkg
-fi
-
-pip install ten*
-
-
-cp -Rn ${TF_BUILD_HOME}/${TF_BUILD}/bazel-bin/tensorflow/*.so ${TF_API_HOME}/lib64
 
