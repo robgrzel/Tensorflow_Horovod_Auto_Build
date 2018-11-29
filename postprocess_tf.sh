@@ -13,7 +13,7 @@ export TF_BUILD=tensorflow
 
 export TF_BUILD_HOME=${HOME}/bin/TF-build-gpu
 
-
+cd ${TF_BUILD_HOME}/${TF_BUILD}
 
 echo "Finish our first goal, wheel python package..."
 
